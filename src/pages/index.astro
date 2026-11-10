@@ -3,11 +3,15 @@ import '../styles/global.css';
 import cardsData from '../data/links.json';
 
 const categories = [
-  { name: 'Todos os Registros', id: 'todos', icon: '❖' },
-  { name: 'RPG & Campanhas', id: 'rpg', icon: '⚔' },
-  { name: 'Desenvolvimento & Web', id: 'dev', icon: '⚡' },
-  { name: 'Gestão do Conhecimento', id: 'conhecimento', icon: '📜' },
-  { name: 'Utilitários & Ferramentas', id: 'utilitarios', icon: '🛠' },
+  { name: 'Destaques', id: 'destaques', icon: '★' },
+  { name: 'Todos', id: 'todos', icon: '◈' },
+  { name: 'TTRPG & Worldbuilding', id: 'ttrpg-worldbuilding', icon: '⚔' },
+  { name: 'Games & Estratégia', id: 'games-estrategia', icon: '🎮' },
+  { name: 'Jogos de Tabuleiro', id: 'jogos-de-tabuleiro', icon: '♟' },
+  { name: 'Dev & Digital Arcanum', id: 'dev-digital-arcanum', icon: '⚡' },
+  { name: 'VTubers & Transmissão', id: 'vtubers-transmissao', icon: '📡' },
+  { name: 'Cinema, Anime & Séries', id: 'cinema-anime-series', icon: '📽' },
+  { name: 'Leitura & Narrativa', id: 'leitura-narrativa', icon: '📜' },
 ];
 ---
 
@@ -28,7 +32,7 @@ const categories = [
 
     <div class="relative w-full max-w-7xl flex flex-col md:flex-row bg-parchment border-[6px] sm:border-10 border-tome-leather rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.85),inset_0_0_100px_rgba(74,44,29,0.3)] overflow-hidden">
       
-      <!-- Lombada / Encadernação Medieval Esquerda -->
+      <!-- Lombada / Encadernação de Couro -->
       <div class="hidden lg:flex flex-col justify-between items-center w-12 bg-linear-to-r from-tome-darkLeather via-tome-leather to-tome-darkLeather border-r-2 border-tome-gold/70 py-10 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] select-none">
         <div class="w-8 h-14 rounded-xs bg-linear-to-b from-yellow-700 via-tome-gold to-yellow-900 border border-yellow-950/80 shadow-[0_4px_8px_rgba(0,0,0,0.6)] flex items-center justify-center">
           <div class="w-2 h-2 rounded-full bg-tome-darkLeather border border-yellow-950/60"></div>
@@ -41,30 +45,32 @@ const categories = [
         </div>
       </div>
 
-      <!-- Sumário Lateral -->
-      <aside class="w-full md:w-64 lg:w-72 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/50 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(74,44,29,0.06)]">
+      <!-- Sumário Lateral com as Categorias do Beyond Obvious -->
+      <aside class="w-full md:w-72 lg:w-80 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/50 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(74,44,29,0.06)]">
         <div>
           <div class="absolute top-2 left-2 text-[10px] text-tome-gold/60 select-none">🙐</div>
           
-          <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b-2 border-tome-gold/60 pb-2 mb-6 flex items-center justify-between">
+          <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b-2 border-tome-gold/60 pb-2 mb-4 flex items-center justify-between">
             <span>Sumário</span>
             <span class="text-xs text-tome-gold select-none">§</span>
           </h2>
 
-          <nav class="space-y-2 font-medieval text-lg" id="category-nav">
+          <nav class="space-y-1.5 font-medieval text-base sm:text-lg" id="category-nav">
             {categories.map((cat, idx) => (
               <button
                 type="button"
                 data-category-btn={cat.id}
-                class={`category-filter-btn w-full text-left group flex items-center justify-between px-3 py-2 rounded-sm border transition-all duration-200 cursor-pointer ${
+                class={`category-filter-btn w-full text-left group flex items-center justify-between px-3 py-1.5 rounded-sm border transition-all duration-200 cursor-pointer ${
                   idx === 0
                     ? 'bg-parchment-dark border-tome-gold text-tome-accent font-bold shadow-xs'
                     : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/40'
                 }`}
               >
-                <span class="flex items-center gap-2.5">
-                  <span class="text-tome-gold text-sm transition-transform group-hover:scale-125">{cat.icon}</span>
-                  <span>{cat.name}</span>
+                <span class="flex items-center gap-2">
+                  <span class={`text-sm transition-transform group-hover:scale-125 ${cat.id === 'destaques' ? 'text-amber-600' : 'text-tome-gold'}`}>
+                    {cat.icon}
+                  </span>
+                  <span class="leading-snug">{cat.name}</span>
                 </span>
                 <span class="text-xs font-bold text-tome-gold/70 opacity-0 group-hover:opacity-100 transition-opacity">›</span>
               </button>
@@ -74,10 +80,10 @@ const categories = [
 
         <div class="mt-8 pt-6 border-t border-parchment-aged/80 text-center space-y-1">
           <p class="font-medieval text-xs text-tome-leather/80">
-            ᛟ Repositório Universal de Conhecimento ᛟ
+            ᛟ Repositório do Além do Óbvio ᛟ
           </p>
           <p class="font-body text-[11px] text-tome-leather/60 italic">
-            Links, referências e ferramentas catalogadas
+            Compêndio de Tomos, Mídias & Arcanas
           </p>
         </div>
       </aside>
@@ -96,7 +102,7 @@ const categories = [
           ᚛ ᚱᛗᚲ ᚷᚱᛁᛗᛟᚱᛁᛟ ᚪᚱᚳᚪᚾᚪ ᛞᛖ ᛚᛁᚾᚲᛋ ᚜
         </div>
 
-        <!-- Cabeçalho Principal com Capitular Iluminada -->
+        <!-- Cabeçalho Principal -->
         <header class="flex items-start gap-4 sm:gap-6 mb-8 border-b-2 border-double border-tome-gold pb-6">
           <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-linear-to-br from-tome-accent via-red-900 to-yellow-950 border-2 border-tome-gold rounded flex items-center justify-center shadow-[0_4px_12px_rgba(139,30,15,0.4)]">
             <span class="font-title text-4xl sm:text-5xl text-parchment-light select-none drop-shadow">
@@ -108,7 +114,7 @@ const categories = [
               Grimório
             </h1>
             <p class="text-sm sm:text-base text-tome-leather leading-relaxed mt-1 max-w-2xl font-body">
-              Repositório universal de referências, documentações, ferramentas web, utilitários e conhecimentos práticos catalogados.
+              Repositório catalogado de ferramentas, worldbuilding, boardgames, transmissões, desenvolvimento e narrativas.
             </p>
           </div>
         </header>
@@ -118,20 +124,20 @@ const categories = [
           <input
             type="text"
             id="search-input"
-            placeholder="Buscar por nome, categoria, tag ou descrição..."
+            placeholder="Buscar por nome, tag, categoria ou termo..."
             class="w-full px-4 py-2.5 bg-parchment-light/80 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/50 font-body text-base outline-none transition-colors shadow-inner"
           />
           <span class="absolute right-3.5 top-2.5 text-tome-gold select-none text-base">ᛋ</span>
         </div>
 
-        <!-- Seção de Cards Estilo Tomo / Manuscrito -->
+        <!-- Seção de Cards -->
         <section>
           <div class="flex items-center justify-between mb-4 border-b border-parchment-aged/50 pb-2">
             <h3 class="font-medieval text-xl text-tome-accent flex items-center gap-2" id="section-title">
-              <span>Todos os Registros</span>
+              <span>★ Destaques</span>
             </h3>
             <span class="text-xs uppercase tracking-widest text-tome-leather/70 font-semibold" id="card-counter">
-              {cardsData.length} Registros
+              0 Registros
             </span>
           </div>
 
@@ -143,6 +149,7 @@ const categories = [
                 rel="noopener noreferrer"
                 data-card-item
                 data-card-category={card.category}
+                data-card-featured={card.featured ? 'true' : 'false'}
                 data-card-title={card.title.toLowerCase()}
                 data-card-desc={card.desc.toLowerCase()}
                 data-card-tag={card.tag.toLowerCase()}
@@ -183,7 +190,7 @@ const categories = [
 
           <div id="no-results" class="hidden text-center py-12 border-2 border-dashed border-parchment-aged rounded mt-6">
             <p class="font-medieval text-lg text-tome-leather">
-              Nenhum registro encontrado com estes termos.
+              Nenhum registro encontrado nesta categoria ou busca.
             </p>
           </div>
         </section>
@@ -197,7 +204,7 @@ const categories = [
     </div>
 
     <script>
-      let activeCategory = 'todos';
+      let activeCategory = 'destaques';
       let searchQuery = '';
 
       const buttons = document.querySelectorAll<HTMLButtonElement>('[data-category-btn]');
@@ -212,11 +219,20 @@ const categories = [
 
         cards.forEach((card) => {
           const category = card.getAttribute('data-card-category') || '';
+          const isFeatured = card.getAttribute('data-card-featured') === 'true';
           const title = card.getAttribute('data-card-title') || '';
           const desc = card.getAttribute('data-card-desc') || '';
           const tag = card.getAttribute('data-card-tag') || '';
 
-          const matchCategory = activeCategory === 'todos' || category === activeCategory;
+          let matchCategory = false;
+          if (activeCategory === 'destaques') {
+            matchCategory = isFeatured;
+          } else if (activeCategory === 'todos') {
+            matchCategory = true;
+          } else {
+            matchCategory = category === activeCategory;
+          }
+
           const matchSearch = !searchQuery || title.includes(searchQuery) || desc.includes(searchQuery) || tag.includes(searchQuery);
 
           if (matchCategory && matchSearch) {
@@ -238,7 +254,7 @@ const categories = [
 
       buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
-          const targetCategory = btn.getAttribute('data-category-btn') || 'todos';
+          const targetCategory = btn.getAttribute('data-category-btn') || 'destaques';
           activeCategory = targetCategory;
 
           buttons.forEach((b) => {
@@ -262,6 +278,9 @@ const categories = [
         searchQuery = (e.target as HTMLInputElement).value.trim().toLowerCase();
         filterCards();
       });
+
+      // Inicializa exibindo os Destaques
+      filterCards();
     </script>
   </body>
 </html>
