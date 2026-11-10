@@ -32,15 +32,15 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=MedievalSharp&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="min-h-screen bg-tome-darkLeather text-tome-ink font-body p-2 sm:p-6 lg:p-10 flex justify-center items-start selection:bg-tome-gold selection:text-white">
 
-    <div class="relative w-full max-w-7xl flex flex-col md:flex-row bg-parchment border-[6px] sm:border-10 border-tome-leather rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.85),inset_0_0_100px_rgba(74,44,29,0.3)] overflow-hidden">
+    <div class="relative w-full max-w-7xl flex flex-col md:flex-row bg-parchment border-[6px] sm:border-10 border-tome-leather rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.85),inset_0_0_120px_rgba(56,31,20,0.35)] overflow-hidden">
       
-      <!-- Lombada / Encadernação de Couro -->
+      <!-- Lombada de Couro -->
       <div class="hidden lg:flex flex-col justify-between items-center w-12 bg-linear-to-r from-tome-darkLeather via-tome-leather to-tome-darkLeather border-r-2 border-tome-gold/70 py-10 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] select-none">
         <div class="w-8 h-14 rounded-xs bg-linear-to-b from-yellow-700 via-tome-gold to-yellow-900 border border-yellow-950/80 shadow-[0_4px_8px_rgba(0,0,0,0.6)] flex items-center justify-center">
           <div class="w-2 h-2 rounded-full bg-tome-darkLeather border border-yellow-950/60"></div>
@@ -54,15 +54,16 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
       </div>
 
       <!-- Sumário Lateral -->
-      <aside class="w-full md:w-72 lg:w-80 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/50 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(74,44,29,0.06)]">
+      <aside class="w-full md:w-72 lg:w-80 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/60 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(56,31,20,0.08)]">
         <div>
           <div class="absolute top-2 left-2 text-[10px] text-tome-gold/60 select-none">🙐</div>
           
-          <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b-2 border-tome-gold/60 pb-2 mb-4 flex items-center justify-between">
+          <h2 class="font-title font-bold text-xl sm:text-2xl text-tome-accent tracking-wider border-b-2 border-tome-gold/60 pb-2 mb-4 flex items-center justify-between">
             <span>Sumário</span>
             <span class="text-xs text-tome-gold select-none">§</span>
           </h2>
-          <nav class="space-y-1 font-serif text-sm tracking-wide" id="category-nav">
+
+          <nav class="space-y-1 font-title text-xs sm:text-sm tracking-wide" id="category-nav">
             {categoryTabs.map((cat: NavTab, idx: number) => (
               <button
                 type="button"
@@ -70,14 +71,14 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
                 class={`category-filter-btn w-full text-left group flex items-center justify-between px-3 py-2 rounded-sm border transition-all duration-200 cursor-pointer ${
                   idx === 0
                     ? 'bg-parchment-dark border-tome-gold text-tome-accent font-bold shadow-xs'
-                    : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/40 font-medium'
+                    : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/50 font-semibold'
                 }`}
               >
                 <span class="flex items-center gap-2.5 truncate">
-                  <span class={`text-base shrink-0 transition-transform group-hover:scale-110 ${cat.id === 'destaques' ? 'text-amber-600' : 'text-tome-gold'}`}>
+                  <span class={`text-base shrink-0 transition-transform group-hover:scale-110 ${cat.id === 'destaques' ? 'text-amber-700' : 'text-tome-gold'}`}>
                     {cat.icon}
                   </span>
-                  <span class="truncate leading-normal">{cat.label}</span>
+                  <span class="truncate leading-tight">{cat.label}</span>
                 </span>
                 <span class="text-xs font-bold text-tome-gold/70 opacity-0 group-hover:opacity-100 transition-opacity">›</span>
               </button>
@@ -85,11 +86,11 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
           </nav>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-parchment-aged/80 text-center space-y-1">
-          <p class="font-medieval text-xs text-tome-leather/80">
+        <div class="mt-8 pt-6 border-t border-parchment-aged text-center space-y-1">
+          <p class="font-title font-bold text-xs tracking-wider text-tome-leather">
             ᛟ Repositório do Além do Óbvio ᛟ
           </p>
-          <p class="font-body text-[11px] text-tome-leather/60 italic">
+          <p class="font-body text-xs text-tome-leather/80 italic">
             {GRIMORIO_ITEMS.length} tomos catalogados
           </p>
         </div>
@@ -98,29 +99,29 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
       <!-- Folha Central / Grimório -->
       <main class="flex-1 p-6 sm:p-10 flex flex-col bg-parchment relative">
         
-        <!-- Cantoneiras Decorativas da Página -->
-        <div class="absolute top-3 left-3 text-xs text-tome-gold/50 select-none">╔</div>
-        <div class="absolute top-3 right-3 text-xs text-tome-gold/50 select-none">╗</div>
-        <div class="absolute bottom-3 left-3 text-xs text-tome-gold/50 select-none">╚</div>
-        <div class="absolute bottom-3 right-3 text-xs text-tome-gold/50 select-none">╝</div>
+        <!-- Cantoneiras da Página -->
+        <div class="absolute top-3 left-3 text-xs text-tome-gold/60 select-none">╔</div>
+        <div class="absolute top-3 right-3 text-xs text-tome-gold/60 select-none">╗</div>
+        <div class="absolute bottom-3 left-3 text-xs text-tome-gold/60 select-none">╚</div>
+        <div class="absolute bottom-3 right-3 text-xs text-tome-gold/60 select-none">╝</div>
 
         <!-- Faixa Rúnica Superior -->
-        <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mb-6 opacity-75">
+        <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mb-6 opacity-85">
           ᚛ ᚱᛗᚲ ᚷᚱᛁᛗᛟᚱᛁᛟ ᚪᚱᚳᚪᚾᚪ ᛞᛖ ᛚᛁᚾᚲᛋ ᚜
         </div>
 
         <!-- Cabeçalho Principal -->
         <header class="flex items-start gap-4 sm:gap-6 mb-8 border-b-2 border-double border-tome-gold pb-6">
-          <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-linear-to-br from-tome-accent via-red-900 to-yellow-950 border-2 border-tome-gold rounded flex items-center justify-center shadow-[0_4px_12px_rgba(139,30,15,0.4)]">
-            <span class="font-title text-4xl sm:text-5xl text-parchment-light select-none drop-shadow">
+          <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-linear-to-br from-tome-accent via-red-950 to-yellow-950 border-2 border-tome-gold rounded flex items-center justify-center shadow-[0_4px_12px_rgba(120,24,11,0.4)]">
+            <span class="font-title text-4xl sm:text-5xl text-parchment-light font-bold select-none drop-shadow">
               G
             </span>
           </div>
           <div class="flex-1">
-            <h1 class="font-title text-2xl sm:text-4xl text-tome-ink font-bold leading-tight">
+            <h1 class="font-title text-2xl sm:text-4xl text-tome-ink font-extrabold tracking-wide leading-tight">
               Grimório
             </h1>
-            <p class="text-sm sm:text-base text-tome-leather leading-relaxed mt-1 max-w-2xl font-body">
+            <p class="text-base text-tome-leather leading-relaxed mt-1 max-w-2xl font-body">
               Repositório universal de utilitários, referências arcanas, board games, ferramentas digitais, mídias e narrativas.
             </p>
           </div>
@@ -132,18 +133,18 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
             type="text"
             id="search-input"
             placeholder="Buscar por nome, tag, categoria ou descrição..."
-            class="w-full px-4 py-2.5 bg-parchment-light/80 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/50 font-body text-base outline-none transition-colors shadow-inner"
+            class="w-full px-4 py-2.5 bg-parchment-light/90 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/60 font-body text-base outline-none transition-colors shadow-inner"
           />
           <span class="absolute right-3.5 top-2.5 text-tome-gold select-none text-base">ᛋ</span>
         </div>
 
         <!-- Seção de Cards -->
         <section>
-          <div class="flex items-center justify-between mb-4 border-b border-parchment-aged/50 pb-2">
-            <h3 class="font-medieval text-xl text-tome-accent flex items-center gap-2" id="section-title">
+          <div class="flex items-center justify-between mb-4 border-b border-parchment-aged pb-2">
+            <h3 class="font-title font-bold text-lg sm:text-xl text-tome-accent flex items-center gap-2 tracking-wide" id="section-title">
               <span>★ Destaques</span>
             </h3>
-            <span class="text-xs uppercase tracking-widest text-tome-leather/70 font-semibold" id="card-counter">
+            <span class="font-title text-xs uppercase tracking-widest text-tome-leather font-bold" id="card-counter">
               0 Registros
             </span>
           </div>
@@ -162,9 +163,9 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
                   data-card-title={card.title.toLowerCase()}
                   data-card-desc={card.description.toLowerCase()}
                   data-card-tag={card.badge ? card.badge.toLowerCase() : ''}
-                  class="group relative bg-parchment-light/90 border-2 border-tome-gold/80 hover:border-tome-accent rounded-sm p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_24px_rgba(43,33,24,0.22)] shadow-[inset_0_0_15px_rgba(200,182,147,0.25)]"
+                  class="group relative bg-parchment-light border-2 border-tome-gold/80 hover:border-tome-accent rounded-sm p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_24px_rgba(34,24,17,0.25)] shadow-[inset_0_0_20px_rgba(181,159,115,0.35)]"
                 >
-                  <div class="absolute inset-1.5 border border-dashed border-tome-gold/30 rounded-xs pointer-events-none group-hover:border-tome-accent/40 transition-colors"></div>
+                  <div class="absolute inset-1.5 border border-dashed border-tome-gold/35 rounded-xs pointer-events-none group-hover:border-tome-accent/50 transition-colors"></div>
 
                   <div class="absolute top-1 left-1 text-[9px] text-tome-gold select-none leading-none">╔</div>
                   <div class="absolute top-1 right-1 text-[9px] text-tome-gold select-none leading-none">╗</div>
@@ -175,22 +176,22 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
                     <div class="flex items-center justify-between border-b border-parchment-aged pb-2 mb-3">
                       <span class="text-xl font-bold text-tome-gold select-none drop-shadow-xs">{rune}</span>
                       {card.badge && (
-                        <span class="text-xs font-medieval text-tome-leather bg-parchment-dark/70 px-2.5 py-0.5 rounded border border-parchment-aged/50">
+                        <span class="font-title text-[11px] font-bold tracking-wider uppercase text-tome-leather bg-parchment-dark px-2.5 py-0.5 rounded border border-parchment-aged">
                           {card.badge}
                         </span>
                       )}
                     </div>
 
-                    <h4 class="font-medieval text-lg font-bold text-tome-ink group-hover:text-tome-accent transition-colors mb-2">
+                    <h4 class="font-title text-base sm:text-lg font-bold text-tome-ink group-hover:text-tome-accent transition-colors mb-2 leading-snug">
                       {card.title}
                     </h4>
-                    <p class="text-sm text-tome-leather leading-relaxed line-clamp-3 font-body">
+                    <p class="text-sm sm:text-base text-tome-leather leading-relaxed line-clamp-3 font-body">
                       {card.description}
                     </p>
                   </div>
 
-                  <div class="relative z-10 mt-5 pt-3 border-t border-parchment-aged/60 flex items-center justify-between text-xs font-medieval text-tome-accent">
-                    <span class="tracking-wide">Acessar</span>
+                  <div class="relative z-10 mt-5 pt-3 border-t border-parchment-aged flex items-center justify-between font-title text-xs font-bold tracking-wider text-tome-accent">
+                    <span>Acessar Tomo</span>
                     <span class="transition-transform group-hover:translate-x-1 font-bold">➔</span>
                   </div>
                 </a>
@@ -198,15 +199,15 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
             })}
           </div>
 
-          <div id="no-results" class="hidden text-center py-12 border-2 border-dashed border-parchment-aged rounded mt-6">
-            <p class="font-medieval text-lg text-tome-leather">
+          <div id="no-results" class="hidden text-center py-12 border-2 border-dashed border-parchment-aged rounded mt-6 bg-parchment-light/40">
+            <p class="font-title text-base text-tome-leather font-semibold">
               Nenhum registro encontrado nesta categoria ou busca.
             </p>
           </div>
         </section>
 
         <!-- Faixa Rúnica Inferior -->
-        <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mt-12 opacity-75">
+        <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mt-12 opacity-85">
           ᚛ ᚠᛖᛁᛏᛟ ᛈᛟᚱ ᛗᛖᛋᛏᚱᛖᛋ ᛈᚪᚱᚪ ᛗᛖᛋᛏᚱᛖᛋ ᚜
         </div>
 
@@ -269,11 +270,11 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
 
           buttons.forEach((b) => {
             b.classList.remove('bg-parchment-dark', 'border-tome-gold', 'text-tome-accent', 'font-bold', 'shadow-xs');
-            b.classList.add('border-transparent', 'text-tome-leather');
+            b.classList.add('border-transparent', 'text-tome-leather', 'font-semibold');
           });
 
           btn.classList.add('bg-parchment-dark', 'border-tome-gold', 'text-tome-accent', 'font-bold', 'shadow-xs');
-          btn.classList.remove('border-transparent', 'text-tome-leather');
+          btn.classList.remove('border-transparent', 'font-semibold');
 
           if (sectionTitle) {
             const label = btn.querySelector('span span:last-child')?.textContent || 'Registros';

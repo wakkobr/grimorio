@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-parchment-light: #fbf7ee;
-  --color-parchment: #f3ebd7;
-  --color-parchment-dark: #e2d5b8;
-  --color-parchment-aged: #c8b693;
+  --color-parchment-light: #ece3cd;
+  --color-parchment: #decfae;
+  --color-parchment-dark: #ccb991;
+  --color-parchment-aged: #b59f73;
 
-  --color-tome-ink: #2b2118;
-  --color-tome-accent: #8b1e0f;
-  --color-tome-gold: #c59b27;
-  --color-tome-leather: #4a2c1d;
-  --color-tome-darkLeather: #1f140e;
+  --color-tome-ink: #221811;
+  --color-tome-accent: #78180b;
+  --color-tome-gold: #b3881b;
+  --color-tome-leather: #381f14;
+  --color-tome-darkLeather: #150c08;
 
-  --font-title: "Cinzel Decorative", serif;
-  --font-medieval: "MedievalSharp", cursive;
+  --font-title: "Cinzel", serif;
+  --font-heading: "Cinzel", serif;
   --font-body: "EB Garamond", serif;
 }
