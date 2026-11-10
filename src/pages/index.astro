@@ -3,11 +3,11 @@ import '../styles/global.css';
 import cardsData from '../data/links.json';
 
 const categories = [
-  { name: 'Todos os Tomos', id: 'todos', icon: '❖' },
-  { name: 'Sistemas & RPG', id: 'sistemas', icon: '⚔' },
-  { name: 'VTT & Mesas', id: 'vtt', icon: '♟' },
-  { name: 'Geradores & Tabelas', id: 'geradores', icon: '🎲' },
-  { name: 'Mapas & Cartografia', id: 'mapas', icon: '🗺' },
+  { name: 'Todos os Registros', id: 'todos', icon: '❖' },
+  { name: 'RPG & Campanhas', id: 'rpg', icon: '⚔' },
+  { name: 'Desenvolvimento & Web', id: 'dev', icon: '⚡' },
+  { name: 'Gestão do Conhecimento', id: 'conhecimento', icon: '📜' },
+  { name: 'Utilitários & Ferramentas', id: 'utilitarios', icon: '🛠' },
 ];
 ---
 
@@ -16,7 +16,7 @@ const categories = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grimório Arcana</title>
+    <title>Grimório</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,7 +44,6 @@ const categories = [
       <!-- Sumário Lateral -->
       <aside class="w-full md:w-64 lg:w-72 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/50 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(74,44,29,0.06)]">
         <div>
-          <!-- Cantoneira Rústica Sumário -->
           <div class="absolute top-2 left-2 text-[10px] text-tome-gold/60 select-none">🙐</div>
           
           <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b-2 border-tome-gold/60 pb-2 mb-6 flex items-center justify-between">
@@ -75,10 +74,10 @@ const categories = [
 
         <div class="mt-8 pt-6 border-t border-parchment-aged/80 text-center space-y-1">
           <p class="font-medieval text-xs text-tome-leather/80">
-            ᛟ Compêndio Livre de RPG ᛟ
+            ᛟ Repositório Universal de Conhecimento ᛟ
           </p>
           <p class="font-body text-[11px] text-tome-leather/60 italic">
-            Folhas catalogadas do multiverso
+            Links, referências e ferramentas catalogadas
           </p>
         </div>
       </aside>
@@ -94,7 +93,7 @@ const categories = [
 
         <!-- Faixa Rúnica Superior -->
         <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mb-6 opacity-75">
-          ᚛ ᚱᛗᚲ ᚷᚱᛁᛗᛟᚱᛁᛟ ᚪᚱᚳᚪᚾᚪ ᛞᛟ ᛗᛖᛋᛏᚱᛖ ᚜
+          ᚛ ᚱᛗᚲ ᚷᚱᛁᛗᛟᚱᛁᛟ ᚪᚱᚳᚪᚾᚪ ᛞᛖ ᛚᛁᚾᚲᛋ ᚜
         </div>
 
         <!-- Cabeçalho Principal com Capitular Iluminada -->
@@ -109,7 +108,7 @@ const categories = [
               Grimório
             </h1>
             <p class="text-sm sm:text-base text-tome-leather leading-relaxed mt-1 max-w-2xl font-body">
-              Tomo dedicado à catalogação de ferramentas, referências arcanas, mesas virtuais e geradores para condução de crônicas e campanhas de RPG.
+              Repositório universal de referências, documentações, ferramentas web, utilitários e conhecimentos práticos catalogados.
             </p>
           </div>
         </header>
@@ -119,7 +118,7 @@ const categories = [
           <input
             type="text"
             id="search-input"
-            placeholder="Buscar encanto, sistema ou ferramenta..."
+            placeholder="Buscar por nome, categoria, tag ou descrição..."
             class="w-full px-4 py-2.5 bg-parchment-light/80 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/50 font-body text-base outline-none transition-colors shadow-inner"
           />
           <span class="absolute right-3.5 top-2.5 text-tome-gold select-none text-base">ᛋ</span>
@@ -129,7 +128,7 @@ const categories = [
         <section>
           <div class="flex items-center justify-between mb-4 border-b border-parchment-aged/50 pb-2">
             <h3 class="font-medieval text-xl text-tome-accent flex items-center gap-2" id="section-title">
-              <span>Todos os Tomos</span>
+              <span>Todos os Registros</span>
             </h3>
             <span class="text-xs uppercase tracking-widest text-tome-leather/70 font-semibold" id="card-counter">
               {cardsData.length} Registros
@@ -149,10 +148,10 @@ const categories = [
                 data-card-tag={card.tag.toLowerCase()}
                 class="group relative bg-parchment-light/90 border-2 border-tome-gold/80 hover:border-tome-accent rounded-sm p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_24px_rgba(43,33,24,0.22)] shadow-[inset_0_0_15px_rgba(200,182,147,0.25)]"
               >
-                <!-- Moldura Ornamental Interna -->
+                <!-- Moldura Interna -->
                 <div class="absolute inset-1.5 border border-dashed border-tome-gold/30 rounded-xs pointer-events-none group-hover:border-tome-accent/40 transition-colors"></div>
 
-                <!-- Cantoneiras Arcanas -->
+                <!-- Cantoneiras -->
                 <div class="absolute top-1 left-1 text-[9px] text-tome-gold select-none leading-none">╔</div>
                 <div class="absolute top-1 right-1 text-[9px] text-tome-gold select-none leading-none">╗</div>
                 <div class="absolute bottom-1 left-1 text-[9px] text-tome-gold select-none leading-none">╚</div>
@@ -175,7 +174,7 @@ const categories = [
                 </div>
 
                 <div class="relative z-10 mt-5 pt-3 border-t border-parchment-aged/60 flex items-center justify-between text-xs font-medieval text-tome-accent">
-                  <span class="tracking-wide">Consultar Tomo</span>
+                  <span class="tracking-wide">Acessar</span>
                   <span class="transition-transform group-hover:translate-x-1 font-bold">➔</span>
                 </div>
               </a>
@@ -184,7 +183,7 @@ const categories = [
 
           <div id="no-results" class="hidden text-center py-12 border-2 border-dashed border-parchment-aged rounded mt-6">
             <p class="font-medieval text-lg text-tome-leather">
-              Nenhum encantamento encontrado com estes termos.
+              Nenhum registro encontrado com estes termos.
             </p>
           </div>
         </section>
