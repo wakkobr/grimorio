@@ -1,0 +1,56 @@
+[
+  {
+    "id": "5e-srd",
+    "title": "D&D 5e SRD",
+    "category": "sistemas",
+    "tag": "Regras",
+    "desc": "Compêndio oficial aberto das regras básicas, magias, monstros e classes do sistema.",
+    "link": "https://5thsrd.org",
+    "rune": "ᚠ"
+  },
+  {
+    "id": "owlbear-rodeo",
+    "title": "Owlbear Rodeo",
+    "category": "vtt",
+    "tag": "Mesa Virtual",
+    "desc": "VTT leve e direto no navegador, focado em agilidade tática sem necessidade de instalação.",
+    "link": "https://www.owlbear.rodeo",
+    "rune": "ᚢ"
+  },
+  {
+    "id": "kobold-fight-club",
+    "title": "Kobold Fight Club",
+    "category": "geradores",
+    "tag": "Combate",
+    "desc": "Calculadora e balanceador de encontros de combate calculados por ND, XP e grupo de jogadores.",
+    "link": "https://koboldplus.club",
+    "rune": "ᚦ"
+  },
+  {
+    "id": "watabou-city",
+    "title": "Medieval Fantasy City",
+    "category": "mapas",
+    "tag": "Gerador",
+    "desc": "Gerador procedural de mapas de cidades, distritos e assentamentos medievais por Watabou.",
+    "link": "https://watabou.itch.io/medieval-fantasy-city-generator",
+    "rune": "ᚨ"
+  },
+  {
+    "id": "donjon-rpg",
+    "title": "Donjon RPG",
+    "category": "geradores",
+    "tag": "Utilitários",
+    "desc": "Acervo clássico de geradores paramétricos de masmorras, armadilhas, tesouros e encontros.",
+    "link": "https://donjon.bin.sh",
+    "rune": "ᚱ"
+  },
+  {
+    "id": "roll20-vtt",
+    "title": "Roll20 VTT",
+    "category": "vtt",
+    "tag": "Mesa Virtual",
+    "desc": "Plataforma tradicional com suporte completo a fichas automatizadas, macros e iluminação dinâmica.",
+    "link": "https://roll20.net",
+    "rune": "ᚲ"
+  }
+]

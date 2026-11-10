@@ -1,63 +1,13 @@
 ---
 import '../styles/global.css';
+import cardsData from '../data/links.json';
 
 const categories = [
-  { name: 'Sistemas & RPG', id: 'sistemas', active: true },
-  { name: 'VTT & Mesas', id: 'vtt', active: false },
-  { name: 'Geradores & Tabelas', id: 'geradores', active: false },
-  { name: 'Mapas & Cartografia', id: 'mapas', active: false },
-  { name: 'Fichas & Ferramentas', id: 'ferramentas', active: false },
-];
-
-const cards = [
-  {
-    title: 'D&D 5e SRD',
-    category: 'Sistemas & RPG',
-    tag: 'Regras',
-    desc: 'Compêndio oficial aberto das regras básicas, magias, monstros e classes.',
-    link: 'https://5thsrd.org',
-    rune: 'ᚠ',
-  },
-  {
-    title: 'Owlbear Rodeo',
-    category: 'VTT & Mesas',
-    tag: 'Mesa Virtual',
-    desc: 'VTT leve, sem necessidade de instalação, ideal para combates ágeis e mapas táticos.',
-    link: 'https://www.owlbear.rodeo',
-    rune: 'ᚢ',
-  },
-  {
-    title: 'Kobold Fight Club',
-    category: 'Geradores & Tabelas',
-    tag: 'Combate',
-    desc: 'Calculadora e balanceador de encontros por ND, XP e quantidade de jogadores.',
-    link: 'https://koboldplus.club',
-    rune: 'ᚦ',
-  },
-  {
-    title: 'Medieval Fantasy City',
-    category: 'Mapas & Cartografia',
-    tag: 'Gerador',
-    desc: 'Gerador procedural de cidades e vilarejos medievais criado por Watabou.',
-    link: 'https://watabou.itch.io/medieval-fantasy-city-generator',
-    rune: 'ᚨ',
-  },
-  {
-    title: 'Donjon RPG',
-    category: 'Geradores & Tabelas',
-    tag: 'Utilitários',
-    desc: 'Conjunto completo de geradores de masmorras, saques, calendários e NPCs.',
-    link: 'https://donjon.bin.sh',
-    rune: 'ᚱ',
-  },
-  {
-    title: 'Roll20 VTT',
-    category: 'VTT & Mesas',
-    tag: 'Mesa Virtual',
-    desc: 'Plataforma completa para fichas integradas, mapas dinâmicos e rolagem de dados.',
-    link: 'https://roll20.net',
-    rune: 'ᚲ',
-  },
+  { name: 'Todos os Tomos', id: 'todos' },
+  { name: 'Sistemas & RPG', id: 'sistemas' },
+  { name: 'VTT & Mesas', id: 'vtt' },
+  { name: 'Geradores & Tabelas', id: 'geradores' },
+  { name: 'Mapas & Cartografia', id: 'mapas' },
 ];
 ---
 
@@ -78,28 +28,33 @@ const cards = [
 
     <div class="relative w-full max-w-7xl flex flex-col md:flex-row bg-parchment border-[6px] sm:border-10 border-tome-leather rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_0_80px_rgba(74,44,29,0.25)] overflow-hidden">
       
-      <!-- Fita / Encadernação Lateral Esquerda (Decorativa) -->
+      <!-- Fita / Lombada de Couro -->
       <div class="hidden lg:flex flex-col justify-around items-center w-10 bg-tome-leather border-r-2 border-tome-gold py-8 shadow-inner select-none">
         <div class="w-6 h-12 rounded-sm bg-linear-to-r from-yellow-700 via-tome-gold to-yellow-800 border border-yellow-950/60 shadow"></div>
         <div class="w-6 h-12 rounded-sm bg-linear-to-r from-yellow-700 via-tome-gold to-yellow-800 border border-yellow-950/60 shadow"></div>
         <div class="w-6 h-12 rounded-sm bg-linear-to-r from-yellow-700 via-tome-gold to-yellow-800 border border-yellow-950/60 shadow"></div>
       </div>
 
-      <!-- Sumário Lateral -->
+      <!-- Sumário Lateral com Filtro Interativo -->
       <aside class="w-full md:w-64 lg:w-72 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/40 flex flex-col justify-between">
         <div>
           <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b border-tome-gold/60 pb-2 mb-6">
             Sumário
           </h2>
-          <nav class="space-y-3 font-medieval text-lg">
-            {categories.map((cat) => (
-              <a
-                href={`#${cat.id}`}
-                class="group flex items-center gap-2 px-3 py-1.5 rounded transition-all duration-200 text-tome-leather hover:text-tome-accent hover:bg-parchment-dark/50"
+          <nav class="space-y-2 font-medieval text-lg" id="category-nav">
+            {categories.map((cat, idx) => (
+              <button
+                type="button"
+                data-category-btn={cat.id}
+                class={`category-filter-btn w-full text-left group flex items-center gap-2 px-3 py-1.5 rounded transition-all duration-200 cursor-pointer ${
+                  idx === 0
+                    ? 'bg-parchment-dark/70 text-tome-accent font-bold shadow-xs'
+                    : 'text-tome-leather hover:text-tome-accent hover:bg-parchment-dark/40'
+                }`}
               >
-                <span class="text-tome-gold opacity-70 group-hover:opacity-100 transition-opacity">❖</span>
+                <span class="rune-bullet text-tome-gold transition-opacity">❖</span>
                 <span>{cat.name}</span>
-              </a>
+              </button>
             ))}
           </nav>
         </div>
@@ -119,14 +74,14 @@ const cards = [
           ᚛ ᚱᛗᚲ ᚷᚱᛁᛗᛟᚱᛁᛟ ᚪᚱᚳᚪᚾᚪ ᛞᛟ ᛗᛖᛋᛏᚱᛖ ᚜
         </div>
 
-        <!-- Cabeçalho Principal com Capitular Iluminada -->
+        <!-- Cabeçalho Principal -->
         <header class="flex items-start gap-4 sm:gap-6 mb-8 border-b-2 border-double border-tome-gold pb-6">
           <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-tome-accent border-2 border-tome-gold rounded flex items-center justify-center shadow-md">
             <span class="font-title text-4xl sm:text-5xl text-parchment-light select-none">
               G
             </span>
           </div>
-          <div>
+          <div class="flex-1">
             <h1 class="font-title text-2xl sm:text-4xl text-tome-ink font-bold leading-tight">
               Grimório
             </h1>
@@ -136,23 +91,39 @@ const cards = [
           </div>
         </header>
 
+        <!-- Barra de Busca Rápida -->
+        <div class="mb-6 relative">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Buscar encanto, sistema ou ferramenta..."
+            class="w-full px-4 py-2.5 bg-parchment-light/80 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/50 font-body text-base outline-none transition-colors shadow-inner"
+          />
+          <span class="absolute right-3.5 top-2.5 text-tome-gold select-none">ᛋ</span>
+        </div>
+
         <!-- Seção de Cards -->
         <section>
           <div class="flex items-center justify-between mb-4">
-            <h3 class="font-medieval text-xl text-tome-accent">
-              Encantamentos & Recursos
+            <h3 class="font-medieval text-xl text-tome-accent" id="section-title">
+              Todos os Tomos
             </h3>
-            <span class="text-xs uppercase tracking-widest text-tome-leather/60 font-semibold">
-              {cards.length} Registros
+            <span class="text-xs uppercase tracking-widest text-tome-leather/60 font-semibold" id="card-counter">
+              {cardsData.length} Registros
             </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {cards.map((card) => (
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="cards-container">
+            {cardsData.map((card) => (
               <a
                 href={card.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-card-item
+                data-card-category={card.category}
+                data-card-title={card.title.toLowerCase()}
+                data-card-desc={card.desc.toLowerCase()}
+                data-card-tag={card.tag.toLowerCase()}
                 class="group relative bg-parchment-light border-2 border-tome-gold/70 hover:border-tome-accent rounded p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(43,33,24,0.25)]"
               >
                 <!-- Cantoneiras Decorativas Sutis -->
@@ -183,6 +154,12 @@ const cards = [
               </a>
             ))}
           </div>
+
+          <div id="no-results" class="hidden text-center py-12 border border-dashed border-parchment-aged rounded mt-4">
+            <p class="font-medieval text-lg text-tome-leather">
+              Nenhum encantamento encontrado com estes termos.
+            </p>
+          </div>
         </section>
 
         <!-- Faixa Rúnica Inferior -->
@@ -193,5 +170,71 @@ const cards = [
       </main>
     </div>
 
+    <script>
+      let activeCategory = 'todos';
+      let searchQuery = '';
+
+      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-category-btn]');
+      const cards = document.querySelectorAll<HTMLElement>('[data-card-item]');
+      const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+      const counter = document.getElementById('card-counter');
+      const noResults = document.getElementById('no-results');
+      const sectionTitle = document.getElementById('section-title');
+
+      function filterCards() {
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const category = card.getAttribute('data-card-category') || '';
+          const title = card.getAttribute('data-card-title') || '';
+          const desc = card.getAttribute('data-card-desc') || '';
+          const tag = card.getAttribute('data-card-tag') || '';
+
+          const matchCategory = activeCategory === 'todos' || category === activeCategory;
+          const matchSearch = !searchQuery || title.includes(searchQuery) || desc.includes(searchQuery) || tag.includes(searchQuery);
+
+          if (matchCategory && matchSearch) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (counter) {
+          counter.textContent = `${visibleCount} Registros`;
+        }
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetCategory = btn.getAttribute('data-category-btn') || 'todos';
+          activeCategory = targetCategory;
+
+          buttons.forEach((b) => {
+            b.classList.remove('bg-parchment-dark/70', 'text-tome-accent', 'font-bold', 'shadow-xs');
+            b.classList.add('text-tome-leather');
+          });
+
+          btn.classList.add('bg-parchment-dark/70', 'text-tome-accent', 'font-bold', 'shadow-xs');
+          btn.classList.remove('text-tome-leather');
+
+          if (sectionTitle) {
+            sectionTitle.textContent = btn.querySelector('span:last-child')?.textContent || 'Registros';
+          }
+
+          filterCards();
+        });
+      });
+
+      searchInput?.addEventListener('input', (e) => {
+        searchQuery = (e.target as HTMLInputElement).value.trim().toLowerCase();
+        filterCards();
+      });
+    </script>
   </body>
 </html>
