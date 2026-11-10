@@ -3,11 +3,11 @@ import '../styles/global.css';
 import cardsData from '../data/links.json';
 
 const categories = [
-  { name: 'Todos os Tomos', id: 'todos' },
-  { name: 'Sistemas & RPG', id: 'sistemas' },
-  { name: 'VTT & Mesas', id: 'vtt' },
-  { name: 'Geradores & Tabelas', id: 'geradores' },
-  { name: 'Mapas & Cartografia', id: 'mapas' },
+  { name: 'Todos os Tomos', id: 'todos', icon: '❖' },
+  { name: 'Sistemas & RPG', id: 'sistemas', icon: '⚔' },
+  { name: 'VTT & Mesas', id: 'vtt', icon: '♟' },
+  { name: 'Geradores & Tabelas', id: 'geradores', icon: '🎲' },
+  { name: 'Mapas & Cartografia', id: 'mapas', icon: '🗺' },
 ];
 ---
 
@@ -26,42 +26,59 @@ const categories = [
   </head>
   <body class="min-h-screen bg-tome-darkLeather text-tome-ink font-body p-2 sm:p-6 lg:p-10 flex justify-center items-start selection:bg-tome-gold selection:text-white">
 
-    <div class="relative w-full max-w-7xl flex flex-col md:flex-row bg-parchment border-[6px] sm:border-10 border-tome-leather rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_0_80px_rgba(74,44,29,0.25)] overflow-hidden">
+    <div class="relative w-full max-w-7xl flex flex-col md:flex-row bg-parchment border-[6px] sm:border-10 border-tome-leather rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.85),inset_0_0_100px_rgba(74,44,29,0.3)] overflow-hidden">
       
-      <!-- Fita / Lombada de Couro -->
-      <div class="hidden lg:flex flex-col justify-around items-center w-10 bg-tome-leather border-r-2 border-tome-gold py-8 shadow-inner select-none">
-        <div class="w-6 h-12 rounded-sm bg-linear-to-r from-yellow-700 via-tome-gold to-yellow-800 border border-yellow-950/60 shadow"></div>
-        <div class="w-6 h-12 rounded-sm bg-linear-to-r from-yellow-700 via-tome-gold to-yellow-800 border border-yellow-950/60 shadow"></div>
-        <div class="w-6 h-12 rounded-sm bg-linear-to-r from-yellow-700 via-tome-gold to-yellow-800 border border-yellow-950/60 shadow"></div>
+      <!-- Lombada / Encadernação Medieval Esquerda -->
+      <div class="hidden lg:flex flex-col justify-between items-center w-12 bg-linear-to-r from-tome-darkLeather via-tome-leather to-tome-darkLeather border-r-2 border-tome-gold/70 py-10 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] select-none">
+        <div class="w-8 h-14 rounded-xs bg-linear-to-b from-yellow-700 via-tome-gold to-yellow-900 border border-yellow-950/80 shadow-[0_4px_8px_rgba(0,0,0,0.6)] flex items-center justify-center">
+          <div class="w-2 h-2 rounded-full bg-tome-darkLeather border border-yellow-950/60"></div>
+        </div>
+        <div class="w-8 h-14 rounded-xs bg-linear-to-b from-yellow-700 via-tome-gold to-yellow-900 border border-yellow-950/80 shadow-[0_4px_8px_rgba(0,0,0,0.6)] flex items-center justify-center">
+          <div class="w-2 h-2 rounded-full bg-tome-darkLeather border border-yellow-950/60"></div>
+        </div>
+        <div class="w-8 h-14 rounded-xs bg-linear-to-b from-yellow-700 via-tome-gold to-yellow-900 border border-yellow-950/80 shadow-[0_4px_8px_rgba(0,0,0,0.6)] flex items-center justify-center">
+          <div class="w-2 h-2 rounded-full bg-tome-darkLeather border border-yellow-950/60"></div>
+        </div>
       </div>
 
-      <!-- Sumário Lateral com Filtro Interativo -->
-      <aside class="w-full md:w-64 lg:w-72 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/40 flex flex-col justify-between">
+      <!-- Sumário Lateral -->
+      <aside class="w-full md:w-64 lg:w-72 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/50 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(74,44,29,0.06)]">
         <div>
-          <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b border-tome-gold/60 pb-2 mb-6">
-            Sumário
+          <!-- Cantoneira Rústica Sumário -->
+          <div class="absolute top-2 left-2 text-[10px] text-tome-gold/60 select-none">🙐</div>
+          
+          <h2 class="font-title text-xl sm:text-2xl text-tome-accent tracking-wider border-b-2 border-tome-gold/60 pb-2 mb-6 flex items-center justify-between">
+            <span>Sumário</span>
+            <span class="text-xs text-tome-gold select-none">§</span>
           </h2>
+
           <nav class="space-y-2 font-medieval text-lg" id="category-nav">
             {categories.map((cat, idx) => (
               <button
                 type="button"
                 data-category-btn={cat.id}
-                class={`category-filter-btn w-full text-left group flex items-center gap-2 px-3 py-1.5 rounded transition-all duration-200 cursor-pointer ${
+                class={`category-filter-btn w-full text-left group flex items-center justify-between px-3 py-2 rounded-sm border transition-all duration-200 cursor-pointer ${
                   idx === 0
-                    ? 'bg-parchment-dark/70 text-tome-accent font-bold shadow-xs'
-                    : 'text-tome-leather hover:text-tome-accent hover:bg-parchment-dark/40'
+                    ? 'bg-parchment-dark border-tome-gold text-tome-accent font-bold shadow-xs'
+                    : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/40'
                 }`}
               >
-                <span class="rune-bullet text-tome-gold transition-opacity">❖</span>
-                <span>{cat.name}</span>
+                <span class="flex items-center gap-2.5">
+                  <span class="text-tome-gold text-sm transition-transform group-hover:scale-125">{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </span>
+                <span class="text-xs font-bold text-tome-gold/70 opacity-0 group-hover:opacity-100 transition-opacity">›</span>
               </button>
             ))}
           </nav>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-parchment-aged text-center">
-          <p class="font-medieval text-xs text-tome-leather/70">
+        <div class="mt-8 pt-6 border-t border-parchment-aged/80 text-center space-y-1">
+          <p class="font-medieval text-xs text-tome-leather/80">
             ᛟ Compêndio Livre de RPG ᛟ
+          </p>
+          <p class="font-body text-[11px] text-tome-leather/60 italic">
+            Folhas catalogadas do multiverso
           </p>
         </div>
       </aside>
@@ -69,15 +86,21 @@ const categories = [
       <!-- Folha Central / Grimório -->
       <main class="flex-1 p-6 sm:p-10 flex flex-col bg-parchment relative">
         
+        <!-- Cantoneiras Decorativas da Página -->
+        <div class="absolute top-3 left-3 text-xs text-tome-gold/50 select-none">╔</div>
+        <div class="absolute top-3 right-3 text-xs text-tome-gold/50 select-none">╗</div>
+        <div class="absolute bottom-3 left-3 text-xs text-tome-gold/50 select-none">╚</div>
+        <div class="absolute bottom-3 right-3 text-xs text-tome-gold/50 select-none">╝</div>
+
         <!-- Faixa Rúnica Superior -->
-        <div class="w-full text-center tracking-[0.4em] text-xs sm:text-sm text-tome-gold font-bold select-none mb-6 opacity-75">
+        <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mb-6 opacity-75">
           ᚛ ᚱᛗᚲ ᚷᚱᛁᛗᛟᚱᛁᛟ ᚪᚱᚳᚪᚾᚪ ᛞᛟ ᛗᛖᛋᛏᚱᛖ ᚜
         </div>
 
-        <!-- Cabeçalho Principal -->
+        <!-- Cabeçalho Principal com Capitular Iluminada -->
         <header class="flex items-start gap-4 sm:gap-6 mb-8 border-b-2 border-double border-tome-gold pb-6">
-          <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-tome-accent border-2 border-tome-gold rounded flex items-center justify-center shadow-md">
-            <span class="font-title text-4xl sm:text-5xl text-parchment-light select-none">
+          <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-linear-to-br from-tome-accent via-red-900 to-yellow-950 border-2 border-tome-gold rounded flex items-center justify-center shadow-[0_4px_12px_rgba(139,30,15,0.4)]">
+            <span class="font-title text-4xl sm:text-5xl text-parchment-light select-none drop-shadow">
               G
             </span>
           </div>
@@ -99,21 +122,21 @@ const categories = [
             placeholder="Buscar encanto, sistema ou ferramenta..."
             class="w-full px-4 py-2.5 bg-parchment-light/80 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/50 font-body text-base outline-none transition-colors shadow-inner"
           />
-          <span class="absolute right-3.5 top-2.5 text-tome-gold select-none">ᛋ</span>
+          <span class="absolute right-3.5 top-2.5 text-tome-gold select-none text-base">ᛋ</span>
         </div>
 
-        <!-- Seção de Cards -->
+        <!-- Seção de Cards Estilo Tomo / Manuscrito -->
         <section>
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-medieval text-xl text-tome-accent" id="section-title">
-              Todos os Tomos
+          <div class="flex items-center justify-between mb-4 border-b border-parchment-aged/50 pb-2">
+            <h3 class="font-medieval text-xl text-tome-accent flex items-center gap-2" id="section-title">
+              <span>Todos os Tomos</span>
             </h3>
-            <span class="text-xs uppercase tracking-widest text-tome-leather/60 font-semibold" id="card-counter">
+            <span class="text-xs uppercase tracking-widest text-tome-leather/70 font-semibold" id="card-counter">
               {cardsData.length} Registros
             </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="cards-container">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-container">
             {cardsData.map((card) => (
               <a
                 href={card.link}
@@ -124,38 +147,42 @@ const categories = [
                 data-card-title={card.title.toLowerCase()}
                 data-card-desc={card.desc.toLowerCase()}
                 data-card-tag={card.tag.toLowerCase()}
-                class="group relative bg-parchment-light border-2 border-tome-gold/70 hover:border-tome-accent rounded p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(43,33,24,0.25)]"
+                class="group relative bg-parchment-light/90 border-2 border-tome-gold/80 hover:border-tome-accent rounded-sm p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_24px_rgba(43,33,24,0.22)] shadow-[inset_0_0_15px_rgba(200,182,147,0.25)]"
               >
-                <!-- Cantoneiras Decorativas Sutis -->
-                <div class="absolute top-1 left-1 text-[8px] text-tome-gold select-none leading-none">╔</div>
-                <div class="absolute top-1 right-1 text-[8px] text-tome-gold select-none leading-none">╗</div>
-                <div class="absolute bottom-1 left-1 text-[8px] text-tome-gold select-none leading-none">╚</div>
-                <div class="absolute bottom-1 right-1 text-[8px] text-tome-gold select-none leading-none">╝</div>
+                <!-- Moldura Ornamental Interna -->
+                <div class="absolute inset-1.5 border border-dashed border-tome-gold/30 rounded-xs pointer-events-none group-hover:border-tome-accent/40 transition-colors"></div>
 
-                <div>
+                <!-- Cantoneiras Arcanas -->
+                <div class="absolute top-1 left-1 text-[9px] text-tome-gold select-none leading-none">╔</div>
+                <div class="absolute top-1 right-1 text-[9px] text-tome-gold select-none leading-none">╗</div>
+                <div class="absolute bottom-1 left-1 text-[9px] text-tome-gold select-none leading-none">╚</div>
+                <div class="absolute bottom-1 right-1 text-[9px] text-tome-gold select-none leading-none">╝</div>
+
+                <div class="relative z-10">
                   <div class="flex items-center justify-between border-b border-parchment-aged pb-2 mb-3">
-                    <span class="text-lg font-bold text-tome-gold">{card.rune}</span>
-                    <span class="text-xs font-medieval text-tome-leather bg-parchment-dark/60 px-2 py-0.5 rounded">
+                    <span class="text-xl font-bold text-tome-gold select-none drop-shadow-xs">{card.rune}</span>
+                    <span class="text-xs font-medieval text-tome-leather bg-parchment-dark/70 px-2.5 py-0.5 rounded border border-parchment-aged/50">
                       {card.tag}
                     </span>
                   </div>
+
                   <h4 class="font-medieval text-lg font-bold text-tome-ink group-hover:text-tome-accent transition-colors mb-2">
                     {card.title}
                   </h4>
-                  <p class="text-sm text-tome-leather leading-snug line-clamp-3">
+                  <p class="text-sm text-tome-leather leading-relaxed line-clamp-3">
                     {card.desc}
                   </p>
                 </div>
 
-                <div class="mt-4 pt-3 border-t border-parchment-aged/60 flex items-center justify-between text-xs font-medieval text-tome-accent">
-                  <span>Consultar</span>
-                  <span class="transition-transform group-hover:translate-x-1">➔</span>
+                <div class="relative z-10 mt-5 pt-3 border-t border-parchment-aged/60 flex items-center justify-between text-xs font-medieval text-tome-accent">
+                  <span class="tracking-wide">Consultar Tomo</span>
+                  <span class="transition-transform group-hover:translate-x-1 font-bold">➔</span>
                 </div>
               </a>
             ))}
           </div>
 
-          <div id="no-results" class="hidden text-center py-12 border border-dashed border-parchment-aged rounded mt-4">
+          <div id="no-results" class="hidden text-center py-12 border-2 border-dashed border-parchment-aged rounded mt-6">
             <p class="font-medieval text-lg text-tome-leather">
               Nenhum encantamento encontrado com estes termos.
             </p>
@@ -163,7 +190,7 @@ const categories = [
         </section>
 
         <!-- Faixa Rúnica Inferior -->
-        <div class="w-full text-center tracking-[0.4em] text-xs sm:text-sm text-tome-gold font-bold select-none mt-12 opacity-75">
+        <div class="w-full text-center tracking-[0.45em] text-xs sm:text-sm text-tome-gold font-bold select-none mt-12 opacity-75">
           ᚛ ᚠᛖᛁᛏᛟ ᛈᛟᚱ ᛗᛖᛋᛏᚱᛖᛋ ᛈᚪᚱᚪ ᛗᛖᛋᛏᚱᛖᛋ ᚜
         </div>
 
@@ -216,15 +243,16 @@ const categories = [
           activeCategory = targetCategory;
 
           buttons.forEach((b) => {
-            b.classList.remove('bg-parchment-dark/70', 'text-tome-accent', 'font-bold', 'shadow-xs');
-            b.classList.add('text-tome-leather');
+            b.classList.remove('bg-parchment-dark', 'border-tome-gold', 'text-tome-accent', 'font-bold', 'shadow-xs');
+            b.classList.add('border-transparent', 'text-tome-leather');
           });
 
-          btn.classList.add('bg-parchment-dark/70', 'text-tome-accent', 'font-bold', 'shadow-xs');
-          btn.classList.remove('text-tome-leather');
+          btn.classList.add('bg-parchment-dark', 'border-tome-gold', 'text-tome-accent', 'font-bold', 'shadow-xs');
+          btn.classList.remove('border-transparent', 'text-tome-leather');
 
           if (sectionTitle) {
-            sectionTitle.textContent = btn.querySelector('span:last-child')?.textContent || 'Registros';
+            const label = btn.querySelector('span span:last-child')?.textContent || 'Registros';
+            sectionTitle.textContent = label;
           }
 
           filterCards();
