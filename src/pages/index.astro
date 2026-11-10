@@ -1,18 +1,26 @@
 ---
 import '../styles/global.css';
-import cardsData from '../data/links.json';
+import { CATEGORIES, GRIMORIO_ITEMS, type CategoryInfo, type GrimorioItem } from '../data/grimorio';
 
-const categories = [
-  { name: 'Destaques', id: 'destaques', icon: '★' },
-  { name: 'Todos', id: 'todos', icon: '◈' },
-  { name: 'TTRPG & Worldbuilding', id: 'ttrpg-worldbuilding', icon: '⚔' },
-  { name: 'Games & Estratégia', id: 'games-estrategia', icon: '🎮' },
-  { name: 'Jogos de Tabuleiro', id: 'jogos-de-tabuleiro', icon: '♟' },
-  { name: 'Dev & Digital Arcanum', id: 'dev-digital-arcanum', icon: '⚡' },
-  { name: 'VTubers & Transmissão', id: 'vtubers-transmissao', icon: '📡' },
-  { name: 'Cinema, Anime & Séries', id: 'cinema-anime-series', icon: '📽' },
-  { name: 'Leitura & Narrativa', id: 'leitura-narrativa', icon: '📜' },
+interface NavTab {
+  id: string;
+  label: string;
+  icon: string;
+}
+
+const categoryList = Object.values(CATEGORIES) as CategoryInfo[];
+
+const categoryTabs: NavTab[] = [
+  { id: 'destaques', label: '★ Destaques', icon: '★' },
+  { id: 'todos', label: '◈ Todos', icon: '◈' },
+  ...categoryList.map((c: CategoryInfo) => ({
+    id: c.id,
+    label: c.label,
+    icon: c.icon,
+  })),
 ];
+
+const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', 'ᚾ', 'ᛁ', 'ᛃ', 'ᛈ', 'ᛇ', 'ᛉ', 'ᛋ', 'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ', 'ᛚ', 'ᛜ', 'ᛟ', 'ᛞ'];
 ---
 
 <!doctype html>
@@ -20,7 +28,7 @@ const categories = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grimório</title>
+    <title>Grimório Arcana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,7 +53,7 @@ const categories = [
         </div>
       </div>
 
-      <!-- Sumário Lateral com as Categorias do Beyond Obvious -->
+      <!-- Sumário Lateral -->
       <aside class="w-full md:w-72 lg:w-80 border-b-2 md:border-b-0 md:border-r-2 border-parchment-aged p-6 bg-parchment-light/50 flex flex-col justify-between relative shadow-[inset_-10px_0_20px_rgba(74,44,29,0.06)]">
         <div>
           <div class="absolute top-2 left-2 text-[10px] text-tome-gold/60 select-none">🙐</div>
@@ -55,8 +63,8 @@ const categories = [
             <span class="text-xs text-tome-gold select-none">§</span>
           </h2>
 
-          <nav class="space-y-1.5 font-medieval text-base sm:text-lg" id="category-nav">
-            {categories.map((cat, idx) => (
+          <nav class="space-y-1 font-medieval text-sm sm:text-base" id="category-nav">
+            {categoryTabs.map((cat: NavTab, idx: number) => (
               <button
                 type="button"
                 data-category-btn={cat.id}
@@ -66,11 +74,11 @@ const categories = [
                     : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/40'
                 }`}
               >
-                <span class="flex items-center gap-2">
-                  <span class={`text-sm transition-transform group-hover:scale-125 ${cat.id === 'destaques' ? 'text-amber-600' : 'text-tome-gold'}`}>
+                <span class="flex items-center gap-2 truncate">
+                  <span class={`text-sm shrink-0 transition-transform group-hover:scale-125 ${cat.id === 'destaques' ? 'text-amber-600' : 'text-tome-gold'}`}>
                     {cat.icon}
                   </span>
-                  <span class="leading-snug">{cat.name}</span>
+                  <span class="truncate leading-tight">{cat.label}</span>
                 </span>
                 <span class="text-xs font-bold text-tome-gold/70 opacity-0 group-hover:opacity-100 transition-opacity">›</span>
               </button>
@@ -83,7 +91,7 @@ const categories = [
             ᛟ Repositório do Além do Óbvio ᛟ
           </p>
           <p class="font-body text-[11px] text-tome-leather/60 italic">
-            Compêndio de Tomos, Mídias & Arcanas
+            {GRIMORIO_ITEMS.length} tomos catalogados
           </p>
         </div>
       </aside>
@@ -114,7 +122,7 @@ const categories = [
               Grimório
             </h1>
             <p class="text-sm sm:text-base text-tome-leather leading-relaxed mt-1 max-w-2xl font-body">
-              Repositório catalogado de ferramentas, worldbuilding, boardgames, transmissões, desenvolvimento e narrativas.
+              Repositório universal de utilitários, referências arcanas, board games, ferramentas digitais, mídias e narrativas.
             </p>
           </div>
         </header>
@@ -124,7 +132,7 @@ const categories = [
           <input
             type="text"
             id="search-input"
-            placeholder="Buscar por nome, tag, categoria ou termo..."
+            placeholder="Buscar por nome, tag, categoria ou descrição..."
             class="w-full px-4 py-2.5 bg-parchment-light/80 border-2 border-parchment-aged focus:border-tome-gold rounded text-tome-ink placeholder-tome-leather/50 font-body text-base outline-none transition-colors shadow-inner"
           />
           <span class="absolute right-3.5 top-2.5 text-tome-gold select-none text-base">ᛋ</span>
@@ -142,50 +150,53 @@ const categories = [
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-container">
-            {cardsData.map((card) => (
-              <a
-                href={card.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-card-item
-                data-card-category={card.category}
-                data-card-featured={card.featured ? 'true' : 'false'}
-                data-card-title={card.title.toLowerCase()}
-                data-card-desc={card.desc.toLowerCase()}
-                data-card-tag={card.tag.toLowerCase()}
-                class="group relative bg-parchment-light/90 border-2 border-tome-gold/80 hover:border-tome-accent rounded-sm p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_24px_rgba(43,33,24,0.22)] shadow-[inset_0_0_15px_rgba(200,182,147,0.25)]"
-              >
-                <!-- Moldura Interna -->
-                <div class="absolute inset-1.5 border border-dashed border-tome-gold/30 rounded-xs pointer-events-none group-hover:border-tome-accent/40 transition-colors"></div>
+            {GRIMORIO_ITEMS.map((card: GrimorioItem, idx: number) => {
+              const rune = runes[idx % runes.length];
+              return (
+                <a
+                  href={card.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-card-item
+                  data-card-category={card.category}
+                  data-card-featured={card.isFeatured ? 'true' : 'false'}
+                  data-card-title={card.title.toLowerCase()}
+                  data-card-desc={card.description.toLowerCase()}
+                  data-card-tag={card.badge ? card.badge.toLowerCase() : ''}
+                  class="group relative bg-parchment-light/90 border-2 border-tome-gold/80 hover:border-tome-accent rounded-sm p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_24px_rgba(43,33,24,0.22)] shadow-[inset_0_0_15px_rgba(200,182,147,0.25)]"
+                >
+                  <div class="absolute inset-1.5 border border-dashed border-tome-gold/30 rounded-xs pointer-events-none group-hover:border-tome-accent/40 transition-colors"></div>
 
-                <!-- Cantoneiras -->
-                <div class="absolute top-1 left-1 text-[9px] text-tome-gold select-none leading-none">╔</div>
-                <div class="absolute top-1 right-1 text-[9px] text-tome-gold select-none leading-none">╗</div>
-                <div class="absolute bottom-1 left-1 text-[9px] text-tome-gold select-none leading-none">╚</div>
-                <div class="absolute bottom-1 right-1 text-[9px] text-tome-gold select-none leading-none">╝</div>
+                  <div class="absolute top-1 left-1 text-[9px] text-tome-gold select-none leading-none">╔</div>
+                  <div class="absolute top-1 right-1 text-[9px] text-tome-gold select-none leading-none">╗</div>
+                  <div class="absolute bottom-1 left-1 text-[9px] text-tome-gold select-none leading-none">╚</div>
+                  <div class="absolute bottom-1 right-1 text-[9px] text-tome-gold select-none leading-none">╝</div>
 
-                <div class="relative z-10">
-                  <div class="flex items-center justify-between border-b border-parchment-aged pb-2 mb-3">
-                    <span class="text-xl font-bold text-tome-gold select-none drop-shadow-xs">{card.rune}</span>
-                    <span class="text-xs font-medieval text-tome-leather bg-parchment-dark/70 px-2.5 py-0.5 rounded border border-parchment-aged/50">
-                      {card.tag}
-                    </span>
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between border-b border-parchment-aged pb-2 mb-3">
+                      <span class="text-xl font-bold text-tome-gold select-none drop-shadow-xs">{rune}</span>
+                      {card.badge && (
+                        <span class="text-xs font-medieval text-tome-leather bg-parchment-dark/70 px-2.5 py-0.5 rounded border border-parchment-aged/50">
+                          {card.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    <h4 class="font-medieval text-lg font-bold text-tome-ink group-hover:text-tome-accent transition-colors mb-2">
+                      {card.title}
+                    </h4>
+                    <p class="text-sm text-tome-leather leading-relaxed line-clamp-3 font-body">
+                      {card.description}
+                    </p>
                   </div>
 
-                  <h4 class="font-medieval text-lg font-bold text-tome-ink group-hover:text-tome-accent transition-colors mb-2">
-                    {card.title}
-                  </h4>
-                  <p class="text-sm text-tome-leather leading-relaxed line-clamp-3">
-                    {card.desc}
-                  </p>
-                </div>
-
-                <div class="relative z-10 mt-5 pt-3 border-t border-parchment-aged/60 flex items-center justify-between text-xs font-medieval text-tome-accent">
-                  <span class="tracking-wide">Acessar</span>
-                  <span class="transition-transform group-hover:translate-x-1 font-bold">➔</span>
-                </div>
-              </a>
-            ))}
+                  <div class="relative z-10 mt-5 pt-3 border-t border-parchment-aged/60 flex items-center justify-between text-xs font-medieval text-tome-accent">
+                    <span class="tracking-wide">Acessar</span>
+                    <span class="transition-transform group-hover:translate-x-1 font-bold">➔</span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
 
           <div id="no-results" class="hidden text-center py-12 border-2 border-dashed border-parchment-aged rounded mt-6">
@@ -279,7 +290,6 @@ const categories = [
         filterCards();
       });
 
-      // Inicializa exibindo os Destaques
       filterCards();
     </script>
   </body>
