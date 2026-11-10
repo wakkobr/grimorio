@@ -32,7 +32,7 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=MedievalSharp&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=MedievalSharp&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -62,23 +62,22 @@ const runes = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', '�
             <span>Sumário</span>
             <span class="text-xs text-tome-gold select-none">§</span>
           </h2>
-
-          <nav class="space-y-1 font-medieval text-sm sm:text-base" id="category-nav">
+          <nav class="space-y-1 font-serif text-sm tracking-wide" id="category-nav">
             {categoryTabs.map((cat: NavTab, idx: number) => (
               <button
                 type="button"
                 data-category-btn={cat.id}
-                class={`category-filter-btn w-full text-left group flex items-center justify-between px-3 py-1.5 rounded-sm border transition-all duration-200 cursor-pointer ${
+                class={`category-filter-btn w-full text-left group flex items-center justify-between px-3 py-2 rounded-sm border transition-all duration-200 cursor-pointer ${
                   idx === 0
                     ? 'bg-parchment-dark border-tome-gold text-tome-accent font-bold shadow-xs'
-                    : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/40'
+                    : 'border-transparent text-tome-leather hover:text-tome-accent hover:border-parchment-aged hover:bg-parchment-dark/40 font-medium'
                 }`}
               >
-                <span class="flex items-center gap-2 truncate">
-                  <span class={`text-sm shrink-0 transition-transform group-hover:scale-125 ${cat.id === 'destaques' ? 'text-amber-600' : 'text-tome-gold'}`}>
+                <span class="flex items-center gap-2.5 truncate">
+                  <span class={`text-base shrink-0 transition-transform group-hover:scale-110 ${cat.id === 'destaques' ? 'text-amber-600' : 'text-tome-gold'}`}>
                     {cat.icon}
                   </span>
-                  <span class="truncate leading-tight">{cat.label}</span>
+                  <span class="truncate leading-normal">{cat.label}</span>
                 </span>
                 <span class="text-xs font-bold text-tome-gold/70 opacity-0 group-hover:opacity-100 transition-opacity">›</span>
               </button>
